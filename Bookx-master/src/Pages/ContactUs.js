@@ -1,9 +1,11 @@
 import React from "react";
 import background from "../Assets/images/banner1.jpg";
-
+import Navbar from "../Components/Navbar";
 const ContactUs = () => {
   return (
     <div>
+              <Navbar/>
+
       <div
         className="page-header"
         style={{ backgroundImage: `url(${background})` }}
@@ -35,7 +37,8 @@ const ContactUs = () => {
             </div> */}
             <div className="col-xs-12 col-sm-12 col-md-8 col-lg-9">
               <h2 className="contact-title">Send Message to Us</h2>
-              <form
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe1xB9ykXuTA9Svd3RojKAypyThQAKvuU10Q5g_YCRcqercOA/viewform?embedded=true" width="640" height="1000" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
+              {/* <form
                 id="contactForm"
                 className="contact-form"
                 data-toggle="validator"
@@ -114,7 +117,7 @@ const ContactUs = () => {
                     <div className="clearfix"></div>
                   </div>
                 </div>
-              </form>
+              </form> */}
             </div>
             <div className="col-xs-12 col-sm-12 col-md-4 col-lg-3">
               <h2 className="contact-title">Get In Touch</h2>

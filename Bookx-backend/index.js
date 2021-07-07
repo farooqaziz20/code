@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/noman', {useNewUrlParser: true, useU
 })
 
 
-////middlewate
+////middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 app.use('/api',authRouter);

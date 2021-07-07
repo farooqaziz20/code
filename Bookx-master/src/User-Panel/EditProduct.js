@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { app } from ".././config/firebase";
 import { useHistory } from "react-router-dom";
 import background from "../Assets/images/banner1.jpg";
+import LogoutNavbar from "../Components/LogoutNavbar";
 
 const db = app.firestore();
 
@@ -74,6 +75,8 @@ export default function EditProduct() {
   };
   return (
     <div>
+              <LogoutNavbar/>
+
       <div
         className="page-header"
         style={{ backgroundImage: `url(${background})` }}

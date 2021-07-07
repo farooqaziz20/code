@@ -6,7 +6,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-
+import LogoutNavbar from "../Components/LogoutNavbar";
 const db = app.firestore();
 
 const MyADs = () => {
@@ -43,6 +43,7 @@ const MyADs = () => {
   };
   return (
     <div>
+              <LogoutNavbar/>
       <div
         className="page-header"
         style={{ backgroundImage: `url(${background})` }}

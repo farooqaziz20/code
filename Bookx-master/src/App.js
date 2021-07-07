@@ -20,13 +20,15 @@ import Navbar from "./Components/Navbar";
 import PostAds from "./User-Panel/PostAds";
 import EditProduct from "./User-Panel/EditProduct";
 import EditProducts from "./User-Panel/EditProducts";
+import LogoutNavbar from "./Components/LogoutNavbar";
 
 function App() {
   return (
     <div>
       {/* <Nav/> */}
       <Router>
-        <Navbar />
+        {/* <LogoutNavbar/>
+        <Navbar /> */}
         <Switch>
           <Route exact path="/">
             <Home />

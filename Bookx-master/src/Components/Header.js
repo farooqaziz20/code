@@ -52,7 +52,7 @@ const Header = () => {
 <option>Locations</option>
 <option> Faislabad</option>
 <option>Lahore</option>
-<option>Multan</option>
+<option>Kamalia</option>
 <option>Islamabad</option>
 <option>Karachi</option>
 </select>

@@ -1,10 +1,13 @@
 import React from "react";
 import background from "../Assets/images/banner1.jpg";
 import AboutImg from "../Assets/images/about.png";
+import Navbar from "../Components/Navbar";
 
 const AboutUs = () => {
   return (
     <div>
+              <Navbar/>
+
       <div
         className="page-header"
         style={{ backgroundImage: `url(${background})` }}

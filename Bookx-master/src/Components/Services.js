@@ -11,7 +11,7 @@ const Services = () => {
           <div className="col-md-6 col-lg-3 col-xs-12">
             <div className="services-item wow fadeInRight" data-wow-delay="0.2s">
               <div className="icon">
-                <i className="lni-book"></i>
+                <i className="lni-cart"></i>
               </div>
               <div className="services-content">
                 <h3>
@@ -28,7 +28,7 @@ const Services = () => {
           <div className="col-md-6 col-lg-3 col-xs-12">
             <div className="services-item wow fadeInRight" data-wow-delay="0.4s">
               <div className="icon">
-                <i className="lni-leaf"></i>
+                <i className="lni-cart-full"></i>
               </div>
               <div className="services-content">
                 <h3>
@@ -62,8 +62,7 @@ const Services = () => {
           <div className="col-md-6 col-lg-3 col-xs-12">
             <div className="services-item wow fadeInRight" data-wow-delay="0.8s">
               <div className="icon">
-                <i className="lni-cog"></i>
-              </div>
+              <i class="lni lni-hand"></i>              </div>
               <div className="services-content">
                 <h3>
                   <a href="#">Donate</a>

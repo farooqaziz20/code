@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import background from '../Assets/images/banner1.jpg';
 import {useHistory} from 'react-router-dom';
-
+import Navbar from "../Components/Navbar";
 
 const Login = () => {
   const [email,setEmail]=useState('');
@@ -31,7 +31,7 @@ const Login = () => {
     }
       else{
         localStorage.setItem('signin', JSON.stringify(res))
-        // window.alert("Login Successfull");
+        window.alert("Login Successfull");
         // console.log("Login Successfull");
         history.push('/my-ads')
       }
@@ -43,6 +43,7 @@ const Login = () => {
   }
   return (
     <div>
+      <Navbar/>
 <div class="page-header" style={{backgroundImage: `url(${background})`}}>
 <div class="container">
 <div class="row">
@@ -90,7 +91,7 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                <div className="form-group mb-3">
+                {/* <div className="form-group mb-3">
                   <div className="checkbox">
                     <input
                       type="checkbox"
@@ -102,7 +103,7 @@ const Login = () => {
                   <a className="forgetpassword" href="forgot-password.html">
                     Forgot Password?
                   </a>
-                </div>
+                </div> */}
                 <div className="text-center">
                   <button className="btn btn-common log-btn" type="submit">Submit</button>
                 </div>

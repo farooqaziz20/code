@@ -1,8 +1,10 @@
 import React from "react";
 import background from "../Assets/images/banner1.jpg";
+import Navbar from "../Components/Navbar";
 const FAQ = () => {
   return (
     <div>
+      <Navbar/>
       <div
         className="page-header"
         id="page-header-bg"

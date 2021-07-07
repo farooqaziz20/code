@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import background from "../Assets/images/banner1.jpg";
 import { useHistory } from "react-router-dom";
 import { app } from ".././config/firebase";
+import LogoutNavbar from "../Components/LogoutNavbar";
 
 const db = app.firestore();
 
@@ -121,6 +122,8 @@ const PostAD = () => {
 
   return (
     <div>
+              <LogoutNavbar/>
+
       <div
         className="page-header"
         style={{ backgroundImage: `url(${background})` }}

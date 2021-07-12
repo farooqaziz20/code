@@ -1,10 +1,21 @@
 import React from "react";
 import background from "../Assets/images/banner1.jpg";
 import Navbar from "../Components/Navbar";
+import LogoutNavbar from "../Components/LogoutNavbar";
 const FAQ = () => {
+  var loggedUser=JSON.parse( localStorage.getItem('signin')??[]);
+  var logedrusernmae=(!(loggedUser.name==null||loggedUser.name==""))?loggedUser.name:"My Account";
+  var flag=(loggedUser.name==null||loggedUser.name=="")?false:true;
+  let navbar;
+
+  if (!flag) {
+    navbar =<Navbar/>;
+  } else {
+    navbar = <LogoutNavbar/>;
+  }
   return (
     <div>
-      <Navbar/>
+       {navbar}
       <div
         className="page-header"
         id="page-header-bg"

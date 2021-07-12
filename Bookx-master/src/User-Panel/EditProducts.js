@@ -22,7 +22,7 @@ export default function EditProducts() {
 
     useEffect(()=>{
         const fetchData=async()=>{
-            const res=await db.collection("noman").doc(id).get();
+            const res=await db.collection("ads").doc(id).get();
         console.log(res.data())
         }
         fetchData();

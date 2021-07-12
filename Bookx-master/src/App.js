@@ -59,14 +59,14 @@ function App() {
             <MyADs />
           </Route>
           
-          {/* <Route exact path="/product-details/:id">
+          {/* <Route exact path="/details/:id">
             <ProductDetails />
-          </Route>
-          <Route path="/details/:id" component={ProductDetailsPage}/> */}
+          </Route> */}
+           <Route exact path="/details/:id" component={ProductDetailsPage}/> 
           
-          <Route  path="/product-detailspage">
+          {/* <Route  path="/product-detailspage">
             <ProductDetailsPage />
-          </Route>
+          </Route> */}
           <Route exact path="/editProduct/:id" component={EditProduct}></Route>
 
           <Route exact path="">

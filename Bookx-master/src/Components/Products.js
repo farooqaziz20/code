@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import { useHistory } from "react-router-dom";
 // import Img1 from '../Assets/images/featured-img1.jpg';
 import { app } from ".././config/firebase";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,10 +19,27 @@ const Products = () => {
   const { data } = useSelector((state) => state.userReducer);
   console.log(data);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchProducts(setLoading));
   }, []);
+  
+  function gotoDetails( id) {
+   
+
+    history.push('/details/'+id)
+ 
+  }
+  let noProduct;
+
+  if (data.length>0) {
+    noProduct = <p></p>;
+  } else {
+    noProduct =  <p >No ad available</p>;
+  }
+
+
 
   // useEffect(()=>{
   //   const ctaFetchHandler=async ()=>{
@@ -65,7 +84,7 @@ const Products = () => {
             <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12">
               <div
                 className="icon-box"
-                onClick={() => dispatch(filterProduct("TextBook"))}
+                onClick={() => dispatch(filterProduct(setLoading,"TextBook"))}
               >
                 <div className="icon">
                   <i class="lni lni-graduation"></i>
@@ -76,7 +95,7 @@ const Products = () => {
             <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12">
               <div
                 className="icon-box"
-                onClick={() => dispatch(filterProduct("Novel"))}
+                onClick={() => dispatch(filterProduct(setLoading,"Novel"))}
               >
                 <div className="icon">
                   <i class="lni lni-pencil"></i>
@@ -87,7 +106,7 @@ const Products = () => {
             <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12">
               <div
                 className="icon-box"
-                onClick={() => dispatch(filterProduct("Magazine"))}
+                onClick={() => dispatch(filterProduct(setLoading,"Magazine"))}
               >
                 <div className="icon">
                   <i className="lni-book"></i>
@@ -98,7 +117,7 @@ const Products = () => {
             <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12">
               <div
                 className="icon-box"
-                onClick={() => dispatch(filterProduct("Lectures"))}
+                onClick={() => dispatch(filterProduct(setLoading,"Lectures"))}
               >
                 <div className="icon">
                   <i class="lni lni-pencil-alt"></i>
@@ -178,7 +197,7 @@ const Products = () => {
             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-4">
               <div className="featured-box">
                 <figure>
-                  <Link to="/product-detailspage">
+                  <Link  onClick={() => gotoDetails(products.docID)}>
                   <img
                     className="img-responsive mx-auto d-block"
                     src={products.avatar}
@@ -215,7 +234,12 @@ const Products = () => {
               </div>
             </div>
           ))}
+          
         </div>
+        <div >
+        {noProduct}
+        </div>
+      
       </div>
       </Router></div>
     

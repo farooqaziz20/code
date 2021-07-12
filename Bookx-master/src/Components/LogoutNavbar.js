@@ -1,10 +1,19 @@
 import React from 'react';
 import Logo from ".././Assets/images/img-logo.png";
 import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 export default function LogoutNavbar() {
-  var loggedUser=JSON.parse( localStorage.getItem('signin'));
+  const history=useHistory();
+  var loggedUser=JSON.parse( localStorage.getItem('signin')??[]);
   var logedrusernmae=(!(loggedUser.name==null||loggedUser.name==""))?loggedUser.name:"My Account";
+  var flag=(loggedUser.name==null||loggedUser.name=="")?false:true;
+  function logout() {
+    localStorage.setItem('signin', JSON.stringify({name:"",email:"", user_id:""}))
+
+    history.push('/login')
+ 
+  }
     return (
         <div>
              <nav className="navbar navbar-expand-lg fixed-top scrolling-navbar">
@@ -56,11 +65,13 @@ export default function LogoutNavbar() {
                   </Link>
                 </li>
               </ul>
+             
               <ul className="sign-in">
                 <li className="nav-item dropdown">
                   <Link 
                     className="nav-link dropdown-toggle"
                     href="#"
+                    
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
@@ -69,7 +80,8 @@ export default function LogoutNavbar() {
                     <i className="lni-user"></i> {logedrusernmae}
                   </Link>
                    <div className="dropdown-menu">
-                    <Link className="dropdown-item" to="/login">
+                    <Link className="dropdown-item" onClick={logout}>
+                      {/* to="/login" */}
                       <i className="lni-lock"></i> Logout
                     </Link>
                     {/* <Link className="dropdown-item" to="/register">
@@ -106,6 +118,7 @@ export default function LogoutNavbar() {
                   </div> 
                 </li>
               </ul>
+             
               <Link className="tg-btn" to="/post-ads">
                 <i className="lni-pencil-alt"></i> Post An Ad
               </Link>
@@ -139,7 +152,7 @@ export default function LogoutNavbar() {
               </Link>
             </li>
             <li>
-              <a href="#">My Account</a>
+              <a href="#"  onClick>My Account</a>
               <ul className="dropdown">
                 <li>
                   <Link to="/login">

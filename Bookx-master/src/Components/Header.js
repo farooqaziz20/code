@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import background from '../Assets/images/banner1.jpg';
 import {useDispatch,useSelector} from 'react-redux';
-import {filterByInput} from '.././store/actions/useAction';
+import {filterByInput, search} from '.././store/actions/useAction';
 
 
 const Header = () => {
@@ -20,6 +20,7 @@ const Header = () => {
         let value=e.target.value;
          setGetCateg({...getCategory,[name]:value});
        }
+       
 
 
        const tryWorking=()=>{
@@ -70,7 +71,7 @@ const Header = () => {
 </select>
 </div>
 </div>
-<button className="btn btn-common" type="button" onClick={()=>dispatch(filterByInput(getCategory))}><i className="lni-search"></i> Search Now</button>
+<button className="btn btn-common" type="button" onClick={()=>dispatch(search(getCategory))}><i className="lni-search"></i> Search Now</button>
 </form>
 </div>
 </div>

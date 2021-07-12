@@ -1,13 +1,64 @@
 import React from "react";
 import background from "../Assets/images/banner1.jpg";
+import  { useEffect, useState } from "react";
 import Img1 from "../Assets/images/product-img1.jpg";
 import Img2 from "../Assets/images/product-img2.jpg";
 import Img3 from "../Assets/images/product-img3.jpg";
+import { useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import { useHistory } from "react-router-dom";
+import { app } from ".././config/firebase";
+import LogoutNavbar from "../Components/LogoutNavbar";
+const db = app.firestore();
 const ProductDetails = () => {
+  var loggedUser=JSON.parse( localStorage.getItem('signin')??[]);
+  var logedrusernmae=(!(loggedUser.name==null||loggedUser.name==""))?loggedUser.name:"My Account";
+  var flag=(loggedUser.name==null||loggedUser.name=="")?false:true;
+  let navbar;
+
+  if (!flag) {
+    navbar =<Navbar/>;
+  } else {
+    navbar = <LogoutNavbar/>;
+  }
+  const { id } = useParams();
+  const [getData, setData] = useState({});
+  const history = useHistory();
+
+  const [fileUrls, setFileUrls] = useState(null);
+  const [titles, setTitles] = useState("");
+  const [categorys, setCategorys] = useState("");
+  const [types, setTypes] = useState("");
+  const [prices, setPrices] = useState("");
+  const [fullNames, setFullNames] = useState("");
+  const [phones, setPhones] = useState("");
+  const [descs, setDescs] = useState("");
+  const [provinces, setProvinces] = useState("");
+  const [locations, setLocations] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await db.collection("ads").doc(id).get();
+      console.log(res.data());
+      setData(res.data());
+      console.log(res.data());
+      setFileUrls(res.data().avatar);
+      setTitles(res.data().title);
+      setCategorys(res.data().category);
+      setTypes(res.data().type);
+      setPrices(res.data().price);
+      setFullNames(res.data().fullName);
+      setPhones(res.data().phone);
+      setDescs(res.data().desc);
+      setProvinces(res.data().province);
+      setLocations(res.data().location);
+    };
+    fetchData();
+  }, []);
   return (
     <div>
-         <Navbar/>
+    
+   {navbar}
           <div className="page-header" style={{ backgroundImage: `url(${background})` }} >
         <div className="container">
           <div className="row">
@@ -29,34 +80,27 @@ const ProductDetails = () => {
     <div className="section-padding">
       <div className="container">
         <div className="product-info row">
-          <div className="col-lg-7 col-md-12 col-xs-12">
-            <div className="details-box ads-details-wrapper">
-              <div id="owl-demo" className="owl-carousel owl-theme">
-                <div className="item">
-                  <div className="product-img">
-                    <img className="img-fluid" src={Img1} alt="" />
-                  </div>
-                  <span className="price">Rs. Price</span>
-                </div>
-                {/* <div className="item">
-                  <div className="product-img">
-                    <img className="img-fluid" src={Img2} alt="" />
-                  </div>
-                  <span className="price">$1,550</span>
-                </div>
-                <div className="item">
-                  <div className="product-img">
-                    <img className="img-fluid" src={Img3} alt="" />
-                  </div>
-                  <span className="price">$1,550</span>
-                </div> */}
-              </div>
+        <div className="col-lg-7 col-md-12 col-xs-12">
+            <div className="details-box">
+              <div className="ads-details-info">
+              <img
+                    className="img-responsive"
+                    src={fileUrls}
+                    alt=""
+                    width="400px"
+                 
+                  />
+               
+               </div>
             </div>
           </div>
+       
           <div className="col-lg-5 col-md-12 col-xs-12">
             <div className="details-box">
               <div className="ads-details-info">
-                <h2>Fetch AD Title Here</h2>
+            
+                <h3>{titles}</h3>
+                <h2>Price: {prices} PKR</h2>
                 {/* <p className="mb-2">
                   Fetch AD Description Here:  <br></br>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -121,7 +165,7 @@ const ProductDetails = () => {
                     <strong>
                       <i className="lni-folder"></i> Category : 
                     </strong>
-                    <span className="pl-2">Fetch Category Here</span>
+                    <span className="pl-2">{categorys}</span>
                   </p>
                 </li><br /><br />
                 <li>
@@ -129,7 +173,7 @@ const ProductDetails = () => {
                     <strong>
                       <i className="lni-archive"></i> Type : 
                     </strong>
-                   <span className="pl-2">Fetch Type Here</span>
+                   <span className="pl-2">{types}</span>
                   </p>
                 </li>
                 {/* <li>
@@ -145,7 +189,7 @@ const ProductDetails = () => {
                 <a href="#" className="btn btn-common">
                   <i className="lni-envelope"></i> Text 
                 </a>
-                <a href="#" className="btn btn-common">
+                <a href={"tel:"+phones} className="btn btn-common">
                   <i className="lni-phone-handset"></i> Call
                 </a>
                 <a href="#" className="btn btn-common">
@@ -171,6 +215,7 @@ const ProductDetails = () => {
               </div> */}
             </div>
           </div>
+       
         </div>
 
         <div className="description-info">
@@ -179,19 +224,9 @@ const ProductDetails = () => {
               <div className="description">
                 <h4>Description</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
+                {descs}
                 </p>
-                <p>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem aperiam, eaque
-                  ipsa quae ab illo inventore veritatis et quasi architecto
-                  beatae vitae dicta sunt explicabo.{" "}
-                </p>
+               
               </div>
             </div>
             <div className="col-lg-4 col-md-6 col-xs-12">
@@ -200,22 +235,22 @@ const ProductDetails = () => {
                 <ul>
                   <li>
                     <a href="#">
-                      <i className="lni-users"></i> Full Name
+                      <i className="lni-users"></i> {fullNames}
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="lni-printer"></i> Mobile Number
+                      <i className="lni-printer"></i>  {phones}
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="lni-reply"></i> Province
+                      <i className="lni-reply"></i>  {provinces}
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="lni-warning"></i>City
+                      <i className="lni-warning"></i> {locations}
                     </a>
                   </li>
                 </ul>

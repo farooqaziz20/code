@@ -3,9 +3,11 @@ import background from "../Assets/images/banner1.jpg";
 import Img1 from "../Assets/images/product-img1.jpg";
 import Img2 from "../Assets/images/product-img2.jpg";
 import Img3 from "../Assets/images/product-img3.jpg";
+import Navbar from "../Components/Navbar";
 const ProductDetails = () => {
   return (
     <div>
+         <Navbar/>
           <div className="page-header" style={{ backgroundImage: `url(${background})` }} >
         <div className="container">
           <div className="row">
@@ -34,9 +36,9 @@ const ProductDetails = () => {
                   <div className="product-img">
                     <img className="img-fluid" src={Img1} alt="" />
                   </div>
-                  <span className="price">$1,550</span>
+                  <span className="price">Rs. Price</span>
                 </div>
-                <div className="item">
+                {/* <div className="item">
                   <div className="product-img">
                     <img className="img-fluid" src={Img2} alt="" />
                   </div>
@@ -47,37 +49,38 @@ const ProductDetails = () => {
                     <img className="img-fluid" src={Img3} alt="" />
                   </div>
                   <span className="price">$1,550</span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
           <div className="col-lg-5 col-md-12 col-xs-12">
             <div className="details-box">
               <div className="ads-details-info">
-                <h2>iMac Pro 2018 with 256 SSD and 8GB RAM</h2>
-                <p className="mb-2">
+                <h2>Fetch AD Title Here</h2>
+                {/* <p className="mb-2">
+                  Fetch AD Description Here:  <br></br>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Voluptatum saepe suscipit debitis neque, laborum! Magni
                   ducimus suscipit modi.
-                </p>
+                </p> */}
                 <div className="details-meta">
-                  <span>
+                  {/* <span>
                     <a href="#">
                       <i className="lni-alarm-clock"></i> 7 Jan, 10:10 pm
                     </a>
-                  </span>
+                  </span> 
                   <span>
                     <a href="#">
-                      <i className="lni-map-marker"></i> New York
+                      <i className="lni-map-marker"></i> Fetch City Here
                     </a>
                   </span>
-                  {/* <span>
+                   <span>
                     <a href="#">
                       <i className="lni-eye"></i> 299 View
                     </a>
                   </span> */}
                 </div>
-                <h4 className="title-small mb-3">Specification:</h4>
+                {/* <h4 className="title-small mb-3">Specification:</h4>
                 <ul className="list-specification">
                   <li>
                     <i className="lni-check-mark-circle"></i> 256GB PCIe flash
@@ -110,43 +113,46 @@ const ProductDetails = () => {
                     <i className="lni-check-mark-circle"></i> 1 Year
                     international warranty
                   </li>
-                </ul>
+                </ul> */}
               </div>
               <ul className="advertisement mb-4">
+                <li><br /><br />
+                  <p>
+                    <strong>
+                      <i className="lni-folder"></i> Category : 
+                    </strong>
+                    <span className="pl-2">Fetch Category Here</span>
+                  </p>
+                </li><br /><br />
                 <li>
                   <p>
                     <strong>
-                      <i className="lni-folder"></i> Categories:
-                    </strong>{" "}
-                    <a href="#">Electronics</a>
+                      <i className="lni-archive"></i> Type : 
+                    </strong>
+                   <span className="pl-2">Fetch Type Here</span>
                   </p>
                 </li>
-                <li>
-                  <p>
-                    <strong>
-                      <i className="lni-archive"></i> Condition:
-                    </strong>{" "}
-                    New
-                  </p>
-                </li>
-                <li>
+                {/* <li>
                   <p>
                     <strong>
                       <i className="lni-package"></i> Brand:
                     </strong>{" "}
                     <a href="#">Apple</a>
                   </p>
-                </li>
+                </li> */}
               </ul>
               <div className="ads-btn mb-4">
-                <a href="#" className="btn btn-common btn-reply">
-                  <i className="lni-envelope"></i> Email
+                <a href="#" className="btn btn-common">
+                  <i className="lni-envelope"></i> Text 
                 </a>
                 <a href="#" className="btn btn-common">
-                  <i className="lni-phone-handset"></i> 01154256643
+                  <i className="lni-phone-handset"></i> Call
+                </a>
+                <a href="#" className="btn btn-common">
+                  <i className="lni-phone-handset"></i> Request
                 </a>
               </div>
-              <div className="share">
+              {/* <div className="share">
                 <span>Share: </span>
                 <div className="social-link">
                   <a className="facebook" href="#">
@@ -162,7 +168,7 @@ const ProductDetails = () => {
                     <i className="lni-google-plus"></i>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -190,27 +196,26 @@ const ProductDetails = () => {
             </div>
             <div className="col-lg-4 col-md-6 col-xs-12">
               <div className="short-info">
-                <h4>Short Info</h4>
+                <h4>Owner Info</h4>
                 <ul>
                   <li>
                     <a href="#">
-                      <i className="lni-users"></i> More ads by{" "}
-                      <span>User</span>
+                      <i className="lni-users"></i> Full Name
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="lni-printer"></i> Print this ad
+                      <i className="lni-printer"></i> Mobile Number
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="lni-reply"></i> Send to a friend
+                      <i className="lni-reply"></i> Province
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="lni-warning"></i> Report this ad
+                      <i className="lni-warning"></i>City
                     </a>
                   </li>
                 </ul>

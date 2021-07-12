@@ -66,7 +66,7 @@ const Header = () => {
 <option>TextBook</option>
 <option>Novel</option>
 <option>Magazine</option>
-<option>Lecture</option>
+<option>Lecture Notes</option>
 </select>
 </div>
 </div>

@@ -21,6 +21,7 @@ import PostAds from "./User-Panel/PostAds";
 import EditProduct from "./User-Panel/EditProduct";
 import EditProducts from "./User-Panel/EditProducts";
 import LogoutNavbar from "./Components/LogoutNavbar";
+import ProductDetailsPage from "./Pages/ProductDetailsPage";
 
 function App() {
   return (
@@ -57,8 +58,14 @@ function App() {
           <Route path="/my-ads">
             <MyADs />
           </Route>
-          <Route exact path="/product-details/:id">
+          
+          {/* <Route exact path="/product-details/:id">
             <ProductDetails />
+          </Route>
+          <Route path="/details/:id" component={ProductDetailsPage}/> */}
+          
+          <Route  path="/product-detailspage">
+            <ProductDetailsPage />
           </Route>
           <Route exact path="/editProduct/:id" component={EditProduct}></Route>
 

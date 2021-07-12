@@ -15,8 +15,9 @@ const MyADs = () => {
 
   useEffect(() => {
     const ctaFetchHandler = async () => {
+      var loggedUser=JSON.parse( localStorage.getItem('signin'));
       try {
-        let data = await db.collection("noman").get();
+        let data = await db.collection("ads").where("userId","==", loggedUser.user_id ).get();
         let students = [];
         data.forEach((doc) => {
           console.log("id", doc.id);
@@ -34,9 +35,10 @@ const MyADs = () => {
   const deleteData = async (id) => {
     // console.log(id);
     try {
-      const res = await db.collection("noman").doc(id).delete();
+      const res = await db.collection("ads").doc(id).delete();
       return <Redirect to="/my-ads" />;
-      // history.push ('/my-ads');
+     
+      //  history.push ('/my-ads');
     } catch (err) {
       console.log(err);
     }
@@ -85,7 +87,7 @@ const MyADs = () => {
 
                 </ul> */}
                     </nav>
-                    <table className="table table-responsive dashboardtable tablemyads">
+                    <table className="table table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl dashboardtable tablemyads">
                       <thead>
                         <tr>
                           {/* <th>

@@ -1,5 +1,5 @@
 import {FETCH_DATA,filter,all,filter_with_input} from '../.././constant/types' ;
-import {db} from '../.././config/firebase';
+import {db} from '../../../src/config/firebase';
 
 
 
@@ -9,7 +9,7 @@ import {db} from '../.././config/firebase';
 export const fetchProducts = (setLoading) => async (dispatch, previouState) => {
     try {
       setLoading(true);
-      let products = await db.collection("noman").get();
+      let products = await db.collection("ads").get();
       let data = [];
       products.forEach((doc) => {
         data.push({
@@ -45,7 +45,7 @@ export const fetchProducts = (setLoading) => async (dispatch, previouState) => {
   export const allProducts = (setLoading) => async (dispatch, previouState) => {
     try {
       setLoading(true);
-      let products = await db.collection("noman").get();
+      let products = await db.collection("ads").get();
       let data = [];
       products.forEach((doc) => {
         data.push({

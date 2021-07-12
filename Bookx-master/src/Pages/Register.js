@@ -3,6 +3,7 @@ import background from "../Assets/images/banner1.jpg";
 import axios from "axios";
 import { useHistory } from "react-router";
 import Navbar from "../Components/Navbar";
+import {db} from '../../src/config/firebase';
 const Register = () => {
   const [user, setUser] = useState({
     name: "",
@@ -29,28 +30,57 @@ const Register = () => {
     e.preventDefault();
     const { name, email, password, cpassword } = user;
     try {
-      const res = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password, cpassword }),
+    var isfind=false;
+      let accounts = await db.collection("accounts").where("email","==", email ).get();
+  
+      accounts.forEach((doc) => {
+        isfind=true;
+
       });
 
-      const data = await res.json();
-      if (data.status === 409 || !data) {
-        window.alert(data.message);
-        console.log(data.message);
-      } else if (data.status === 400) {
-        window.alert(data.errors[0].msg);
-      } else {
-        window.alert("Registeration Successfull");
-        console.log("Registeration Successfull");
-        history.push("/login");
+      if(!isfind){
+        await db.collection("accounts").add({
+          name: name,
+          email: email,
+          password: password,
+          type:"user",
+        
+        }).then(()=>{
+          window.alert("Registeration Successfull");
+          console.log("Registeration Successfull");
+          history.push("/login");
+        })
+      }else{
+        window.alert("Email already exist.");
       }
+     
     } catch (error) {
-      console.log("Something Went Wrong");
+      console.log("error", error);
+      alert(error);
+    } finally {
+      // setLoading(false);
     }
+    // try {
+    //   const res = await fetch("/api/signup", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ name, email, password, cpassword }),
+    //   });
+
+    //   const data = await res.json();
+    //   if (data.status === 409 || !data) {
+    //     window.alert(data.message);
+    //     console.log(data.message);
+    //   } else if (data.status === 400) {
+    //     window.alert(data.errors[0].msg);
+    //   } else {
+       
+    //   }
+    // } catch (error) {
+    //   console.log("Something Went Wrong");
+    // }
   };
 
   return (

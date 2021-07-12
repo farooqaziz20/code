@@ -3,6 +3,8 @@ import Logo from ".././Assets/images/img-logo.png";
 import {Link} from 'react-router-dom';
 
 export default function LogoutNavbar() {
+  var loggedUser=JSON.parse( localStorage.getItem('signin'));
+  var logedrusernmae=(!(loggedUser.name==null||loggedUser.name==""))?loggedUser.name:"My Account";
     return (
         <div>
              <nav className="navbar navbar-expand-lg fixed-top scrolling-navbar">
@@ -56,24 +58,25 @@ export default function LogoutNavbar() {
               </ul>
               <ul className="sign-in">
                 <li className="nav-item dropdown">
-                  <Link to="/login"
+                  <Link 
                     className="nav-link dropdown-toggle"
                     href="#"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
+                    
                   >
-                    <i className="lni-user"></i> Logout
+                    <i className="lni-user"></i> {logedrusernmae}
                   </Link>
-                  {/* <div className="dropdown-menu">
+                   <div className="dropdown-menu">
                     <Link className="dropdown-item" to="/login">
-                      <i className="lni-lock"></i> Log In
+                      <i className="lni-lock"></i> Logout
                     </Link>
-                    <Link className="dropdown-item" to="/register">
+                    {/* <Link className="dropdown-item" to="/register">
                       <i className="lni-user"></i> Register
-                    </Link> */}
+                    </Link> 
 
-                    {/*
+                    
                     <a className="dropdown-item"
                       href="account-profile-setting.html">
                       <i className="lni-home"></i> Account Home
@@ -99,8 +102,8 @@ export default function LogoutNavbar() {
                     </a>
                     <a className="dropdown-item" href="account-close.html">
                       <i className="lni-close"></i>Account close
-                    </a> 
-                  </div>*/}
+                    </a>  */}
+                  </div> 
                 </li>
               </ul>
               <Link className="tg-btn" to="/post-ads">

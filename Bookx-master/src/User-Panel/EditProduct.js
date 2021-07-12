@@ -25,9 +25,9 @@ export default function EditProduct() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await db.collection("noman").doc(id).get();
+      const res = await db.collection("ads").doc(id).get();
       setData(res.data());
-
+      console.log(res.data());
       setFileUrls(res.data().avatar);
       setTitles(res.data().title);
       setCategorys(res.data().category);
@@ -66,16 +66,16 @@ export default function EditProduct() {
     };
 
     try {
-      const res = await db.collection("noman").doc(id).update(firebaseData);
+      const res = await db.collection("ads").doc(id).update(firebaseData);
       console.log("res", res);
-      history.push("/");
+      history.push("/my-ads");
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <div>
-              <LogoutNavbar/>
+      <LogoutNavbar />
 
       <div
         className="page-header"
@@ -112,7 +112,12 @@ export default function EditProduct() {
                     <div className="dashboard-wrapper">
                       {/* <h1>Edit Producut</h1> */}
                       <form>
-                        <img src={fileUrls} width="100px" height="100px" className="mr-5 btn-border mb-3" />
+                        <img
+                          src={fileUrls}
+                          width="100px"
+                          height="100px"
+                          className="mr-5 btn-border mb-3"
+                        />
                         <input type="file" onChange={onFileChange}></input>
                         <div className="form-group mb-3">
                           <label className="control-label">Product Title</label>
@@ -128,7 +133,7 @@ export default function EditProduct() {
                         <div className="form-group mb-3 tg-inputwithicon">
                           <label className="control-label">Category</label>
                           <div className="tg-select form-control">
-                          <select
+                            <select
                               onChange={(e) => setCategorys(e.target.value)}
                               value={categorys}
                             >
@@ -149,7 +154,7 @@ export default function EditProduct() {
                         <div className="form-group mb-3 tg-inputwithicon">
                           <label className="control-label">I Want to</label>
                           <div className="tg-select form-control">
-                          <select
+                            <select
                               onChange={(e) => setTypes(e.target.value)}
                               value={types}
                             >
@@ -187,77 +192,82 @@ export default function EditProduct() {
                             placeholder="description"
                             value={descs}
                             onChange={(e) => setDescs(e.target.value)}
-                            ></textarea>
-                            </div>
+                          ></textarea>
+                        </div>
 
                         <div className="dashboard-box">
                           <h2 className="dashbord-title">Contact Detail</h2>
                         </div>
                         <div className="form-group mb-3">
                           <label className="control-label">Full Name*</label>
-                        <input
+                          <input
                             className="form-control input-md"
                             type="text"
                             placeholder="Name"
-                          value={fullNames}
-                          onChange={(e) => setFullNames(e.target.value)}
-                        ></input>
-                                                </div>
+                            value={fullNames}
+                            onChange={(e) => setFullNames(e.target.value)}
+                          ></input>
+                        </div>
 
-                                                <div className="form-group mb-3">
+                        <div className="form-group mb-3">
                           <label className="control-label">
                             Mobile Number *
                           </label>
-                        <input
+                          <input
                             className="form-control input-md"
                             type="text"
                             placeholder="Number"
-                          value={phones}
-                          onChange={(e) => setPhones(e.target.value)}
-                        ></input>
+                            value={phones}
+                            onChange={(e) => setPhones(e.target.value)}
+                          ></input>
                         </div>
 
                         <div className="form-group mb-3 tg-inputwithicon">
                           <label className="control-label">City</label>
                           <div className="tg-select form-control">
                             <select
-                          value={locations}
-                          onChange={(e) => setLocations(e.target.value)}                            >
-                            <option>City</option>
-                          <option>Lahore</option>
-                          <option>Faislabad</option>
-                          <option>Kamalia</option>
+                              value={locations}
+                              onChange={(e) => setLocations(e.target.value)}
+                            >
+                              <option>City</option>
+                              <option>Lahore</option>
+                              <option>Faislabad</option>
+                              <option>Kamalia</option>
                             </select>
-                        {/* <input
+                            {/* <input
                           type="text"
                           value={locations}
                           onChange={(e) => setLocations(e.target.value)}
                         ></input> */}
-                        </div>
+                          </div>
                         </div>
 
-<div className="form-group mb-3 tg-inputwithicon">
+                        <div className="form-group mb-3 tg-inputwithicon">
                           <label className="control-label">Province</label>
-                          <div className="tg-select form-control">  
-                          <select
-                          value={provinces}
-                          onChange={(e) => setProvinces(e.target.value)}
-                          >
-                          <option>Province</option>
-                          <option>Punjab</option>
-                          <option>Sindh</option>
-                          <option>Balochistan</option>
-                            </select>                
+                          <div className="tg-select form-control">
+                            <select
+                              value={provinces}
+                              onChange={(e) => setProvinces(e.target.value)}
+                            >
+                              <option>Province</option>
+                              <option>Punjab</option>
+                              <option>Sindh</option>
+                              <option>Balochistan</option>
+                            </select>
 
-                        {/* <input
+                            {/* <input
                           type="text"
                           value={provinces}
                           onChange={(e) => setProvinces(e.target.value)}
                         ></input> */}
-                        </div>
+                          </div>
                         </div>
                       </form>
-                      <button type="submit" className="btn btn-common" onClick={submitHandler}>
+                      <button
+                        type="submit"
+                        className="btn btn-common"
+                        onClick={submitHandler}
+                      >
                         Update Products
                       </button>
                     </div>

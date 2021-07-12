@@ -3,6 +3,7 @@ import Logo from ".././Assets/images/img-logo.png";
 import {Link} from 'react-router-dom';
 
 export default function Navbar() {
+
     return (
         <div>
              <nav className="navbar navbar-expand-lg fixed-top scrolling-navbar">
@@ -63,7 +64,7 @@ export default function Navbar() {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i className="lni-user"></i> My Account
+                    <i className="lni-user"></i>My Account
                   </a>
                   <div className="dropdown-menu">
                     <Link className="dropdown-item" to="/login">

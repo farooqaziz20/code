@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import background from '../Assets/images/banner1.jpg';
 import {useHistory} from 'react-router-dom';
 import Navbar from "../Components/Navbar";
+import {db} from '../../src/config/firebase';
 
 const Login = () => {
   const [email,setEmail]=useState('');
@@ -12,34 +13,24 @@ const Login = () => {
 
   const handleLogin=async (e)=>{
     e.preventDefault();
-    try{
-      const res= await fetch("/api/signin",{
-        method:"POST",
-        headers:{
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({email,password})
-      })
- 
-      const data =await res.json();
-      console.log(data)
-      if(data.status===401){
-        window.alert(data.message);
-      }
-      else if(data.status===400){
-        window.alert(data.errors[0].msg)
-    }
-      else{
-        localStorage.setItem('signin', JSON.stringify(res))
+
+    var isfind=false;
+    let accounts = await  db.collection("accounts").where("email","==", email ).where("password","==", password ).get();
+
+    accounts.forEach((doc) => {
+      isfind=true;
+      
+// var docTemp=JSON.parse(doc.data())
+console.log(doc.data().name);
+    localStorage.setItem('signin', JSON.stringify({name:doc.data().name,email:doc.data().email, user_id:doc.id}))
         window.alert("Login Successfull");
         // console.log("Login Successfull");
         history.push('/my-ads')
-      }
-     }
-     catch(err){
-       console.log("Something Went Wrong")
-     }
-
+    });
+    if(!isfind){
+      window.alert("Incorrect username or password");
+    }
+   
   }
   return (
     <div>

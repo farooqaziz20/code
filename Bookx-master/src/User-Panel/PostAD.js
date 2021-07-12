@@ -29,8 +29,9 @@ const PostAD = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     const firebaseData = {
+      
       title: title,
       avatar: fileUrl,
       category: category,
@@ -58,7 +59,8 @@ const PostAD = () => {
       ) {
         return;
       } else {
-        const res = await db.collection("noman").add(firebaseData);
+        
+        const res = await db.collection("ads").add(firebaseData);
         console.log("res", res);
       }
     } catch (err) {
@@ -68,8 +70,10 @@ const PostAD = () => {
 
   const submitData = async (e) => {
     e.preventDefault();
+    var loggedUser=JSON.parse( localStorage.getItem('signin'));
 
     const firebaseData = {
+      userId:loggedUser.user_id,
       title: title,
       avatar: fileUrl,
       category: category,
@@ -109,9 +113,10 @@ const PostAD = () => {
         !province ||
         !location
       ) {
+        window.alert("Error");
         return;
       } else {
-        const res = await db.collection("noman").add(firebaseData);
+        const res = await db.collection("ads").add(firebaseData);
         console.log("res", res);
         history.push("/my-ads");
       }
@@ -292,9 +297,12 @@ const PostAD = () => {
                         <div className="form-group mb-3">
                           <label className="control-label">Product Title</label>
                           <input
+                            maxLength="60"
+                            minLength="10"
                             className="form-control input-md"
                             type="text"
                             placeholder="title"
+                            required
                             onChange={(e) => setTitle(e.target.value)}
                           ></input>
                         </div>
@@ -302,7 +310,8 @@ const PostAD = () => {
                           <label className="control-label">Category</label>
                           <div className="tg-select form-control">
                             <select
-                              onChange={(e) => setCategory(e.target.value)}
+                            required
+                            onChange={(e) => setCategory(e.target.value)}
                             >
                               <option>Category</option>
                               <option>TextBook</option>
@@ -317,8 +326,10 @@ const PostAD = () => {
                           <label className="control-label">I Want to</label>
                           <div className="tg-select form-control">
                             <select
+                            required
                                onChange={(e) => setType(e.target.value)}
                             >
+                              <option>Select</option>
                               <option>Sale</option>
                               <option>Lend</option>
                               <option>Donate</option>
@@ -330,7 +341,8 @@ const PostAD = () => {
                           <label className="control-label">Price</label>
                           <input
                             className="form-control input-md"
-                            type="text"
+                            required
+                            type="number"
                             placeholder="price"
                             onChange={(e) => setPrice(e.target.value)}
                           ></input>
@@ -339,6 +351,8 @@ const PostAD = () => {
                         <div className="form-group mb-3">
                           <label className="control-label">Description</label>
                           <textarea
+                          minLength="30"
+                          maxLength="200"
                             className="form-control"
                             rows="5"
                             placeholder="description"
@@ -350,6 +364,7 @@ const PostAD = () => {
                           <label className="control-label">Image</label>
                           <input
                             className="form-control input-md"
+                            accept="image/jpeg, image/png"
                             type="file"
                             onChange={onFileChange}
                           ></input>
@@ -364,7 +379,7 @@ const PostAD = () => {
                           <input
                             className="form-control input-md"
                             type="text"
-                            placeholder="Name"
+                            placeholder="Your Full Name"
                             onChange={(e) => setFullName(e.target.value)}
                           ></input>
                         </div>
@@ -376,7 +391,7 @@ const PostAD = () => {
                           <input
                             className="form-control input-md"
                             type="text"
-                            placeholder="Number"
+                            placeholder="e.g 0300-1234567"
                             onChange={(e) => setPhone(e.target.value)}
                           ></input>
                         </div>
@@ -389,6 +404,7 @@ const PostAD = () => {
                           <option>Punjab</option>
                           <option>Sindh</option>
                           <option>Balochistan</option>
+                          <option>KPK</option>
                         </select>
                         </div>
                         </div>
@@ -398,13 +414,18 @@ const PostAD = () => {
                           <div className="tg-select form-control">
                         <select onChange={(e) => setLocation(e.target.value)}>
                           <option>City</option>
+                          <option>Karachi</option>
                           <option>Lahore</option>
                           <option>Faislabad</option>
-                          <option>Kamalia</option>
+                          <option>Rawalpindi</option>
+                          <option>Gujranwala</option>
+                          <option>Multan</option>
+                          <option>Haiderabad</option>
+                          <option>Islamabad</option>
                         </select>
                         </div>
                         </div>
-                        <button className="btn btn-common" type="submit">submit</button>
+                        <button className="btn btn-common" type="submit">Submit AD</button>
                       </form>
                     </div>
                   </div>

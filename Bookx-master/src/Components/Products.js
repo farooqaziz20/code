@@ -52,6 +52,7 @@ const Products = () => {
 
   return (
     <div>
+      <Router>
       <section className="categories-icon section-padding bg-drack">
         <div className="container">
           <div className="row">
@@ -177,7 +178,7 @@ const Products = () => {
             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-4">
               <div className="featured-box">
                 <figure>
-                  {/* <a href="/product-details"> */}
+                  <Link to="/product-detailspage">
                   <img
                     className="img-responsive mx-auto d-block"
                     src={products.avatar}
@@ -185,26 +186,26 @@ const Products = () => {
                     height="200px"
                     width="200px"
                   />
-                  {/* </a> */}
+                </Link> 
                 </figure>
                 <div className="feature-content">
                   <div className="product">
-                    <i className="lni-folder"></i> {products.category}
+                    <i className="lni-folder">  </i> {products.category}
                   </div>
                   <h4>{products.title}</h4>
 
                   <ul className="address">
+                  <li>
+                      <i className="lni-package"></i> {products.province}
+                    </li>
                     <li>
                       <i className="lni-map-marker"></i> {products.location}
                     </li>
                     <li>
-                      <i className="lni-mobile"></i> {products.phone}
-                    </li>
-                    <li>
-                      <i className="lni-package"></i> {products.province}
-                    </li>
-                    <li>
                       <i className="lni-user"></i> {products.fullName}
+                    </li>
+                    <li>
+                      <i className="lni-mobile"></i> {products.type}
                     </li>
                   </ul>
                   <div className="listing-bottom">
@@ -216,8 +217,9 @@ const Products = () => {
           ))}
         </div>
       </div>
-    </div>
-    // </div>
+      </Router></div>
+    
+   //</div>
   );
 };
 
